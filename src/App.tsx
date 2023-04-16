@@ -1,15 +1,18 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Main from "./pages/main";
+import Layout from "./components/layout/Layout";
+import Main from "./pages";
 import "./App.css";
 
 function App() {
   console.log(1);
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Main />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 }
