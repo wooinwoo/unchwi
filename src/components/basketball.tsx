@@ -1,56 +1,59 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import styled, { keyframes } from "styled-components";
 
-function basketball() {
-  let speed = 0;
-  const gravity = 0.2;
-  let exit = false;
-  function animate() {
-    const ball = document.getElementById("ball");
-    // 계속 반복해서 실행되는 함수
-    const posY = parseInt(ball.style.top) || 0;
-    const nextPosY = posY + speed;
-    const containerHeight =
-      document.getElementsByClassName("container")[0].offsetHeight;
-    const ballHeight = ball.offsetHeight;
+type BallProps = {
+  position: number;
+  isMoving: boolean;
+};
 
-    if (nextPosY + ballHeight > containerHeight && !exit) {
-      // 공이 땅에 닿은 경우
-      speed = -speed * 0.8;
-
-      if (Math.abs(speed) < 2) {
-        // 속도가 일정 값 이하로 떨어지면 애니메이션을 중지한다
-        return;
-      }
-    } else {
-      // 공이 떨어지는 중인 경우
-      speed += gravity;
-    }
-    ball.style.top = nextPosY + "px";
-    if (nextPosY + ballHeight > containerHeight && Math.abs(speed) < 6.5) {
-      console.log(speed);
-      exit = true;
-    }
-    if (speed > 30) {
-      return;
-    }
-    requestAnimationFrame(animate);
+const rotate = keyframes`
+  from {
+    transform: rotate(360deg);
   }
-
-  useEffect(() => {
-    animate();
-  }, []);
-  return <Ball src="../assets/imges/ basketball.png" />;
-}
-
-export default basketball;
-
-const Ball = styled.img`
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-color: #f00;
-  border-radius: 50%;
-  top: 0;
-  left: 75px;
+  to {
+    transform: rotate(0deg);
+  }
 `;
+
+const Ball = styled.img<BallProps>`
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 100px);
+  right: ${({ position }) => position}px;
+  animation: ${rotate} 2s linear infinite;
+  animation-play-state: ${({ isMoving }) => (isMoving ? "running" : "paused")};
+`;
+
+const MovingBall = () => {
+  const [position, setPosition] = useState<number>(0);
+  const [isMoving, setIsMoving] = useState(true);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (
+        position >=
+        document.getElementsByClassName("banner-container")[0].clientWidth / 2 -
+          200
+      ) {
+        clearInterval(intervalId);
+        console.log(123);
+        setIsMoving(!isMoving);
+      } else {
+        setPosition(position + 5);
+      }
+    }, 30);
+
+    return () => clearInterval(intervalId);
+  }, [position]);
+
+  return (
+    <Ball
+      position={position}
+      isMoving={isMoving}
+      src="src/assets/imges/basketball.png"
+    />
+  );
+};
+
+export default MovingBall;
