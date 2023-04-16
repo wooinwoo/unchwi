@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import Basketball from "../../components/basketball";
+import MainBanner from "../components/MainBanner";
 
 function main() {
-  console.log(1);
   return (
     <Wrap>
-      <Basketball />
+      <MainBanner />
     </Wrap>
   );
 }
