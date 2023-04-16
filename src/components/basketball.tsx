@@ -51,7 +51,7 @@ const MovingBall = () => {
     <Ball
       position={position}
       isMoving={isMoving}
-      src="src/assets/imges/basketball.png"
+      src="https://github.com/wooinwoo/unchwi/blob/main/src/assets/imges/basketball.png?raw=true"
     />
   );
 };
