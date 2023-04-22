@@ -27,6 +27,10 @@ const Post = () => {
         농구 할 사람?? 얼레벌레 체육관에서 할 거고 지금 6명 있어요. <br />
         <br />
         시간 및 다른 질문사항은 제발 메세지로 물어봐주세요 🙏
+        <br />
+        시간 및 다른 질문사항은 제발 메세지로 물어봐주세요 🙏
+        <br />
+        시간 및 다른 질문사항은 제발 메세지로 물어봐주세요 🙏
       </PostBody>
       <PostFooter>
         <div>
@@ -52,18 +56,17 @@ const Post = () => {
 export default Post;
 
 const Container = styled.div`
-  max-width: 750px;
-  height: 100%;
+  height: calc(75% + 60px);
   background: #f4f4f4;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
-  padding: 30px 50px;
+  padding: 20px 50px;
   margin: 10px;
 `;
 
 const PostHeader = styled.div`
   display: flex;
 
-  height: 15%;
+  height: 60px;
   & .left-area {
     display: flex;
 
@@ -96,7 +99,6 @@ const Info = styled.span`
   font-size: 14px;
   line-height: 14px;
   margin-right: 20px;
-
   & span {
     font-size: 12px;
     color: #80838e;
@@ -106,7 +108,7 @@ const Info = styled.span`
 const PostBody = styled.pre`
   display: flex;
   align-items: center;
-  height: 50%;
+  height: 55%;
   padding: 40px;
   color: #717481;
   font-style: normal;

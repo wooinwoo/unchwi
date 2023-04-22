@@ -17,6 +17,10 @@ export default PostContainer;
 const Container = styled.div`
   position: relative;
   display: grid;
-  gap: 12% 0%;
+  gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
+  margin: 10px;
+  @media screen and (max-width: 1280px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
