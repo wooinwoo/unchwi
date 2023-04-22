@@ -3,15 +3,22 @@ import styled from "styled-components";
 import MainBanner from "../components/MainBanner";
 import PostContainer from "../components/post/PostContainer";
 
-function main() {
+const main = () => {
   return (
     <Wrap>
       <MainBanner />
-      <PostContainer />
+      <Content>
+        <PostContainer />
+      </Content>
     </Wrap>
   );
-}
+};
 
 export default main;
 
 const Wrap = styled.div``;
+
+const Content = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+`;
