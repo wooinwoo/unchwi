@@ -24,14 +24,14 @@ const SignUp = () => {
       setErrorMsg("　");
       const createdUser = await createUserWithEmailAndPassword(
         firebaseAuth,
-        registerEmail,
-        registerPassword
+        email,
+        password
       );
-      //console.log(createdUser);
+      console.log("user:", createdUser);
       setRegisterEmail("");
       setRegisterPassword("");
     } catch (err) {
-      //console.log(err.code);
+      console.log("err:", err.code);
       switch (err.code) {
         case "auth/weak-password":
           setErrorMsg("비밀번호는 6자리 이상이어야 합니다");
@@ -48,6 +48,7 @@ const SignUp = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    register();
   };
 
   return (
@@ -170,7 +171,9 @@ const SignUp = () => {
             </RadioLabel>
           </RadioContainer>
         </InputContainer>
-        <Button type="submit">회원가입</Button>
+        <Button type="submit" onClick={() => register()}>
+          회원가입
+        </Button>
       </Form>
     </>
   );
